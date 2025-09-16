@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerGuide - One-Stop Personalized Career & Education Advisor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav__brand">
+                <h2>CareerGuide</h2>
+            </div>
+            <ul class="nav__menu">
+                <li><a href="#home" class="nav__link active">Home</a></li>
+                <li><a href="#dashboard" class="nav__link">Dashboard</a></li>
+                <li><a href="#aptitude" class="nav__link">Aptitude Test</a></li>
+                <li><a href="#careers" class="nav__link">Career Paths</a></li>
+                <li><a href="#colleges" class="nav__link">Colleges</a></li>
+                <li><a href="#timeline" class="nav__link">Timeline</a></li>
+                <li><a href="#scholarships" class="nav__link">Scholarships</a></li>
+            </ul>
+            
+            <div class="nav__actions">
+                <button class="btn btn--sm btn--primary" id="loginBtn">Login</button>
+                <button class="btn btn--sm btn--outline" id="registerBtn">Register</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Home Section -->
+        <section id="home" class="section hero">
+            <div class="container">
+                <div class="hero__content">
+                    <h1 class="hero__title">Find Your Perfect Career Path</h1>
+                    <p class="hero__subtitle">Get personalized career guidance, discover government colleges, and make informed decisions about your future with our comprehensive education advisor.</p>
+                    <div class="hero__actions">
+                        <button class="btn btn--primary btn--lg" id="getStartedBtn">Get Started</button>
+                        <button class="btn btn--outline btn--lg" id="learnMoreBtn">Learn More</button>
+                    </div>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-card__icon">🎯</div>
+                        <h3>Aptitude Assessment</h3>
+                        <p>Take our comprehensive psychometric test to discover your strengths and interests</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card__icon">🎓</div>
+                        <h3>Career Mapping</h3>
+                        <p>Explore detailed career paths with salary ranges and growth prospects</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card__icon">🏫</div>
+                        <h3>College Directory</h3>
+                        <p>Find government colleges with course details, fees, and admission requirements</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card__icon">⏰</div>
+                        <h3>Timeline Tracker</h3>
+                        <p>Stay updated with admission deadlines and important academic dates</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section dashboard hidden">
+            <div class="container">
+                <h2>Your Career Dashboard</h2>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Profile Completion</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="profileProgress"></div>
+                        </div>
+                        <p id="profileStatus">Complete your profile to get better recommendations</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Recommended Careers</h3>
+                        <div id="recommendedCareers"></div>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Saved Colleges</h3>
+                        <div id="savedColleges"></div>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Upcoming Deadlines</h3>
+                        <div id="upcomingDeadlines"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Aptitude Test Section -->
+        <section id="aptitude" class="section aptitude hidden">
+            <div class="container">
+                <div class="test-header">
+                    <h2>Aptitude & Interest Assessment</h2>
+                    <p>Answer 25 questions to discover your ideal career path</p>
+                    <div class="progress-indicator">
+                        <span id="questionProgress">Question 1 of 25</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="testProgress"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-container">
+                    <div id="testStart" class="test-start">
+                        <h3>Ready to discover your career path?</h3>
+                        <p>This assessment will help us understand your interests, personality, and values to recommend the best career options for you.</p>
+                        <button class="btn btn--primary btn--lg" id="startTestBtn">Start Assessment</button>
+                    </div>
+
+                    <div id="testQuestions" class="test-questions hidden">
+                        <div class="question-card">
+                            <h3 id="questionText"></h3>
+                            <div class="answer-options" id="answerOptions"></div>
+                            <div class="question-nav">
+                                <button class="btn btn--outline" id="prevBtn" disabled>Previous</button>
+                                <button class="btn btn--primary" id="nextBtn" disabled>Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="testResults" class="test-results hidden">
+                        <h3>Your Career Recommendations</h3>
+                        <div id="resultsContent"></div>
+                        <button class="btn btn--primary" id="exploreCareerBtn">Explore Career Paths</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Paths Section -->
+        <section id="careers" class="section careers hidden">
+            <div class="container">
+                <h2>Career Paths</h2>
+                <div class="careers-filter">
+                    <button class="filter-btn active" data-stream="all">All Streams</button>
+                    <button class="filter-btn" data-stream="Science">Science</button>
+                    <button class="filter-btn" data-stream="Commerce">Commerce</button>
+                    <button class="filter-btn" data-stream="Arts">Arts</button>
+                </div>
+                <div class="careers-grid" id="careersGrid"></div>
+            </div>
+        </section>
+
+        <!-- Colleges Section -->
+        <section id="colleges" class="section colleges hidden">
+            <div class="container">
+                <h2>Government Colleges Directory</h2>
+                <div class="colleges-search">
+                    <div class="search-filters">
+                        <input type="text" placeholder="Search colleges..." class="form-control" id="collegeSearch">
+                        <select class="form-control" id="locationFilter">
+                            <option value="">All Locations</option>
+                            <option value="West Bengal">West Bengal</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chattisgarh">Chattisgarh</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="West Bengal">Jharkhand</option>
+                            <option value="West Bengal">Karnataka</option>
+                            <option value="West Bengal">Kerala</option>
+                            <option value="West Bengal">Madhya Pradesh</option>
+                            <option value="West Bengal">Manipur</option>
+                            <option value="West Bengal">Maharashtra</option>
+                            <option value="West Bengal">Meghalaya</option>
+                            <option value="West Bengal">Mizoram</option>
+                            <option value="West Bengal">Nagaland</option>
+                            <option value="West Bengal">Odisha</option>
+                            <option value="West Bengal">Punjab</option>
+                            <option value="West Bengal">Rajasthan</option>
+                            <option value="West Bengal">Sikkim</option>
+                            <option value="West Bengal">Tamil Nadu</option>
+                            <option value="West Bengal">Telengana</option>
+                            <option value="West Bengal">Tripura</option>
+                            <option value="West Bengal">Uttar Pradesh</option>
+                            <option value="West Bengal">Uttarakhand</option>
+                        </select>
+                        <select class="form-control" id="courseFilter">
+                            <option value="">All Courses</option>
+                            <option value="B.Sc">B.Sc</option>
+                            <option value="B.Com">B.Com</option>
+                            <option value="BA">BA</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="colleges-grid" id="collegesGrid"></div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="section timeline hidden">
+            <div class="container">
+                <h2>Academic Timeline & Important Dates</h2>
+                <div class="timeline-container" id="timelineContainer"></div>
+            </div>
+        </section>
+
+        <!-- Scholarships Section -->
+        <section id="scholarships" class="section scholarships hidden">
+            <div class="container">
+                <h2>Scholarship Opportunities</h2>
+                <div class="scholarships-grid" id="scholarshipsGrid"></div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="section resources hidden">
+            <div class="container">
+                <h2>Study Materials & Resources</h2>
+                <div class="resources-categories" id="resourcesCategories"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Registration Modal -->
+    <div id="registrationModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Your Account</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Current Class</label>
+                        <select class="form-control" id="currentClass" required>
+                            <option value="">Select Class</option>
+                            <option value="10th Passed">10th Passed</option>
+                            <option value="12th Passed">12th Passed</option>
+                            <option value="Graduate">Graduate</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Stream</label>
+                        <select class="form-control" id="stream">
+                            <option value="">Select Stream</option>
+                            <option value="Science">Science</option>
+                            <option value="Commerce">Commerce</option>
+                            <option value="Arts">Arts</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">State</label>
+                        <select class="form-control" id="state" required>
+                            <option value="">Select State</option>
+                            <option value="West Bengal">West Bengal</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full-width">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Login to Your Account</h3>
+                <button class="modal-close" id="closeLoginModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full-width">Login</button>
+                </form>
+                <p class="text-center mt-8">Don't have an account? <a href="#" id="switchToRegister">Register here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
